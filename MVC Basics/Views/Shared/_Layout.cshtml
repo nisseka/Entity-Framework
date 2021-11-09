@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/StyleSheet.css" />
+@{
+    if (ViewBag.Title != null)
+    {
+    <title>@ViewBag.Title</title>
+    }
+}
+</head>
+<body>
+    <header>
+        <h1 id="TopLeftHeaderCell">WNET</h1>
+        <nav class="headerNav">
+            <ul class="headerUl">
+@{
+    string[] links = { "About", "Projects", "Contact" };
+
+    foreach (var item in links)
+    {
+                <li>@Html.ActionLink(item, item, "Home", null, new { @class = "headerLi" })</li>
+    }
+}
+            </ul>
+        </nav>
+        @Html.ActionLink("Home", "Index", "Home", null, new { id = "TopRightHeaderCell" })
+    </header>
+
+    <main class="main">
+@{ 
+    if (ViewBag.Title != null)
+    {
+        <h2 class="Title">@ViewBag.Title</h2>
+    }
+    @RenderBody();
+}
+    </main>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year Stefan Sundbeck</p>
+    </footer>
+</body>
+</html>

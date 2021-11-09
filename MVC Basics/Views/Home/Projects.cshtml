@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Projects";
+
+    Dictionary<string, string> projects = new Dictionary<string, string>();
+    projects.Add("Sokoban", "My version of the game Sokoban in javascript");
+    projects.Add("Calculator", "A console-based calculator");
+    projects.Add("VendingMachine", "A console-based vending machine");
+    projects.Add("Hangman", "A guess-the-word game");
+    projects.Add("TodoIt", "Object oriented programming with classes & arrays");
+
+}
+        <ul>
+@{
+        foreach (var item in projects)
+        {
+            string link = $"https://github.com/nisseka/{item.Key}";
+            <li>
+                <a href="@link" target="_blank">@item.Key</a>
+                <p>@item.Value</p>
+            </li>
+        }
+}
+        </ul>

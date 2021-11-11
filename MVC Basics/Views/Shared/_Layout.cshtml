@@ -17,12 +17,18 @@
         <nav class="headerNav">
             <ul class="headerUl">
 @{
-    string[] links = { "About", "Projects", "Contact" };
+            // Build the links menu:
+            Dictionary<string,string> links = new Dictionary<string, string>();
+            links.Add("About","/Home/About");
+            links.Add("Contact", "/Home/Contact");
+            links.Add("Projects", "/Home/Projects");
+            links.Add("Temperature Check","/FeverCheck");
 
-    foreach (var item in links)
-    {
-                <li>@Html.ActionLink(item, item, "Home", null, new { @class = "headerLi" })</li>
-    }
+
+            foreach (var item in links)
+            {
+                <li class="headerLi"><a href="@item.Value">@item.Key</a></li>
+            }
 }
             </ul>
         </nav>
@@ -38,7 +44,6 @@
     @RenderBody();
 }
     </main>
-
     <footer>
         <p>&copy; @DateTime.Now.Year Stefan Sundbeck</p>
     </footer>

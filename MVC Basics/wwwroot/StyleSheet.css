@@ -1,6 +1,6 @@
 ﻿body {
     font-family: Consolas;
-    width: 1024px;
+    width: 1115px;
     background-color: lightblue;
     display: flex;
     flex-direction: column;
@@ -115,8 +115,25 @@ footer {
     padding: 25px 20px 25px 20px;
     width: 790px;
     position: relative;
-    left: 87px;
+    left: 133px;
 }
+
+/* 
+    Styles for input form on Guessing Game 
+*/
+
+#GuessNumberForm {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 25px 20px 25px 20px;
+    width: 660px;
+    position: relative;
+    left: 198px;
+}
+
+/* 
+    General styles for forms
+*/
 
 .formButton {
     background-color: #4CAF50;

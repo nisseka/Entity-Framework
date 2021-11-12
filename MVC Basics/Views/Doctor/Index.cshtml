@@ -12,6 +12,5 @@
             @Html.RadioButton("temperatureScale", "Fahrenheit", Model.CheckTemperatureScaleActive(TemperatureScaleTypes.Fahrenheit), new { id = "fahrenheitTemperatureScale" })
             <label for="fahrenheitTemperatureScale">Fahrenheit</label>
             <input type="submit" value="Submit" class="formButton" />
-<!--            <input type="reset" value="Reset" class="formButton"/> -->
         </form>
 @Html.Raw(Model.MakeHTMLCodeFromMessage())

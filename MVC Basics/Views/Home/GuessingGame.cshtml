@@ -1,0 +1,29 @@
+﻿@using MVC_Basics.Models
+@model GuessingGameModel
+
+@{
+    ViewData["Title"] = "Guessing Game";
+}
+
+        <form asp-route="GuessingGame" method="post" id="GuessNumberForm">
+            <label>Guess a number (between 1 and 100):</label>
+            <input type="number" name="guessedNumber" value="@Model.GuessedNumber" min="1" max="100" class="formInputField" />
+            <input type="submit" value="Submit" class="formButton" />
+        </form>
+@{
+    if (Model.Message != null)
+    {
+        <h2>@Model.Message</h2>
+    }
+
+    if (Model.NumberOfTriesMessage != null)
+    {
+        <p>@Model.NumberOfTriesMessage</p>
+    }
+
+    if (Model.StartAgainMessage != null)
+    {
+        <p>@Model.StartAgainMessage</p>
+    }
+}
+

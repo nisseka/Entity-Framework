@@ -9,7 +9,7 @@ namespace MVC_Data.Models
     public class CreatePersonViewModel
     {
 	[Display(Name="Name:")]
-	[Required]
+	[Required(ErrorMessage ="A name is required")]
 	public string Name { get; set; }
 
 	[Display(Name = "Phone Number:")]

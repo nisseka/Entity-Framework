@@ -8,13 +8,16 @@ namespace MVC_Data.Models
 {
     public class CreatePersonViewModel
     {
+	[DataType(DataType.Text)]
 	[Display(Name="Name:")]
 	[Required(ErrorMessage ="A name is required")]
 	public string Name { get; set; }
 
+	[DataType(DataType.PhoneNumber)]
 	[Display(Name = "Phone Number:")]
 	public string PhoneNumber { get; set; }
 
+	[DataType(DataType.Text)]
 	[Display(Name = "City:")]
 	public string City { get; set; }
 

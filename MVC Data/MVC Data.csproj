@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>MVC_Basics</RootNamespace>
+    <RootNamespace>MVC_Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

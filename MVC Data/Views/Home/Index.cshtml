@@ -1,0 +1,63 @@
+﻿@using MVC_Data.Models;
+@model PeopleViewModel
+
+@{ 
+    ViewData["Title"] = "People Index";
+
+    var createPersonViewModel = new CreatePersonViewModel();    // Create an emtpy view-model for use in the partial view AddPerson
+
+}
+        <form class="form" id="SearchForm" asp-action="Index" asp-controller="Home" method="get">
+            <label for="searchFor">Search for:</label>
+            <input class="formInputField" type="text" id="searchFor" name="searchFor"/>
+            <input type="checkbox" id="caseSensitive" name="caseSensitive" value="true"/>
+            <label for="caseSensitive">Case Sensitive</label>
+            <input class="formButton" type="submit" value="Search" />
+        </form>
+        <p></p>
+        <partial name="AddPerson" model="createPersonViewModel">
+        <p></p>
+        <table>
+            <tr>
+                <td colspan="5">
+                    @if (Model.SearchFor != null)
+                    {
+                        @Html.Raw($"Filter: '{Model.SearchFor}'")
+                        if (Model.CaseSensitiveSearch)
+                        {
+                            @Html.Raw(" (Case Sensitive)")
+                        }
+                    <input type="button" name="ClearFilterButton" value="Clear" class="formButton" onclick="GoToURL('/')" />
+                    } else
+                        @Html.Raw("&nbsp;")
+                </td>
+            </tr>
+            <tr class="tableHeader">
+                <th>Nr.</th>
+                <th>Name:</th>
+                <th>City:</th>
+                <th>PhoneNumber:</th>
+                <th></th>
+            </tr>
+@{ 
+    int count = Model.PeopleToDisplay.Count;
+    for (int i=0; i < count; i++)
+    {
+        var item = Model.PeopleToDisplay[i];
+
+        int k = (i % 2);
+        string tableClass = Model.TableRowClasses[k];
+
+            <tr class="@tableClass">
+                <td>@(i + 1)</td>
+                <td>@item.Name</td>
+                <td>@item.City</td>
+                <td>@item.PhoneNumber</td>
+                <td><a href="/Home/DeletePerson?id=@item.ID">Remove</a></td>
+            </tr>
+            }
+}
+            <tr class="tableFooter">
+                <td colspan="5" align="right">@count item(s)</td>
+            </tr>
+        </table>

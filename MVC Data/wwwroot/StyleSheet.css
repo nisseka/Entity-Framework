@@ -91,7 +91,8 @@ footer {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    background-color: #0066CC;
+/*    background-color: #0066CC; */
+    background-color: #0C1D40;
     border-radius: 8px;
     padding: 5px 8px;
     min-height: 500px;
@@ -106,34 +107,15 @@ footer {
 }
 
 /* 
-    Styles for input form on FeverCheck 
-*/
-
-#TemperatureForm {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 25px 20px 25px 20px;
-    width: 790px;
-    position: relative;
-    left: 133px;
-}
-
-/* 
-    Styles for input form on Guessing Game 
-*/
-
-#GuessNumberForm {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 25px 20px 25px 20px;
-    width: 660px;
-    position: relative;
-    left: 198px;
-}
-
-/* 
     General styles for forms
 */
+
+.form {
+    border: 1px solid;
+    border-radius: 4px;
+    align-self: end;
+    padding: 5px 8px;
+}
 
 .formButton {
     background-color: #4CAF50;
@@ -151,3 +133,32 @@ footer {
     border-radius: 4px;
 }
 
+/* 
+    Styles for list of people table: 
+*/
+
+table {
+    border-spacing: 0px;
+    width: 90%;
+    align-self: center;
+}
+
+td, th {
+    padding: 2px;
+}
+
+.tableHeader {
+    background-color: #0066CC;
+}
+
+.tableFooter {
+    background-color: #0066CC;
+}
+
+.tableRowEven {
+    background-color: #004080;
+}
+
+.tableRowOdd {
+    background-color: #003366;
+}

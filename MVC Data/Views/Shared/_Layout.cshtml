@@ -19,11 +19,6 @@
 @{
             // Build the links menu:
             Dictionary<string,string> links = new Dictionary<string, string>();
-            links.Add("About","/Home/About");
-            links.Add("Contact", "/Home/Contact");
-            links.Add("Projects", "/Home/Projects");
-            links.Add("Temperature Check","/FeverCheck");
-            links.Add("Guessing Game", "/GuessingGame");
 
 
             foreach (var item in links)
@@ -48,5 +43,6 @@
     <footer>
         <p>&copy; @DateTime.Now.Year Stefan Sundbeck</p>
     </footer>
+    <script src="~/site.js"></script>
 </body>
 </html>

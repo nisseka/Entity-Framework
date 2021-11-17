@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVC_Basics
+namespace MVC_Data
 {
     public class Startup
     {
@@ -47,16 +47,6 @@ namespace MVC_Basics
 		endpoints.MapControllerRoute(
 		    name: "default",
 		    pattern: "{controller=Home}/{action=Index}/{id?}"
-		    );
-		endpoints.MapControllerRoute(
-		    name: "FeverCheck",
-		    pattern: "FeverCheck",
-		    defaults: new { controller="Doctor", action="Index" }
-		    );
-		endpoints.MapControllerRoute(
-		    name: "GuessingGame",
-		    pattern: "GuessingGame",
-		    defaults: new { controller = "Home", action = "GuessingGame" }
 		    );
 	    });
 	}

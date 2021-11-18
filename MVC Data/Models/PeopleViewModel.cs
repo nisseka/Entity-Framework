@@ -64,20 +64,33 @@ namespace MVC_Data.Models
 
 	public void PrepareView()
 	{
+	    int peopleToDisplayIndex = 0;
+	    bool addPerson = false;
+
 	    StringComparison compareType = CaseSensitiveSearch ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
 
 	    PeopleToDisplay.Clear();
 
 	    foreach (var person in People)
 	    {
-		if ( searchFor != null && searchFor.Length > 0)
+		if (searchFor != null && searchFor.Length > 0)
 		{
-		    if (person.Name.IndexOf(searchFor, compareType) >= 0 || person.City.IndexOf(searchFor, compareType) >= 0)
+		    if (person.Name.Contains(searchFor, compareType) || person.City.Contains(searchFor, compareType))
 		    {
-			PeopleToDisplay.Add(person);
-		    }
-		} else	    // No filtering..
-		    PeopleToDisplay.Add(person);
+			addPerson = true;
+		    } else
+			addPerson = false;
+		} else        // No filtering..
+		    addPerson = true;
+
+		if (addPerson)
+		{
+		    Person personInPeopleToDisplayList = new Person(person);	    // Create a copy of person
+		    personInPeopleToDisplayList.ItemIndex = peopleToDisplayIndex;   // Assign a new ItemIndex (which is its index in the PeopleToDisplay list)
+
+		    PeopleToDisplay.Add(personInPeopleToDisplayList);
+		    peopleToDisplayIndex++;
+		}
 	    }
 	}
 
@@ -124,6 +137,8 @@ namespace MVC_Data.Models
 	    int itemIndex = People.Count;
 
 	    aPerson.ID = itemIndex;
+	    aPerson.ItemIndex = itemIndex;
+
 	    People.Add(aPerson);
 
 	    if (UpdateDB)

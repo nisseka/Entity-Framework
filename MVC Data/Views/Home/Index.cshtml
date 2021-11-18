@@ -15,49 +15,47 @@
             <input class="formButton" type="submit" value="Search" />
         </form>
         <p></p>
-        <partial name="AddPerson" model="createPersonViewModel">
+        <partial name="AddPerson" model="createPersonViewModel" />
         <p></p>
-        <table>
-            <tr>
-                <td colspan="5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
                     @if (Model.SearchFor != null)
                     {
-                        @Html.Raw($"Filter: '{Model.SearchFor}'")
+                        string str = $"Filter: '{Model.SearchFor}'";
                         if (Model.CaseSensitiveSearch)
                         {
-                            @Html.Raw(" (Case Sensitive)")
+                            str += " (Case Sensitive)";
                         }
-                    <input type="button" name="ClearFilterButton" value="Clear" class="formButton" onclick="GoToURL('/')" />
+                    <div>@Html.Raw(str)
+                        <input type="button" name="ClearFilterButton" value="Clear" class="formButton" onclick="GoToURL('/')" />
+                    </div>
                     } else
-                        @Html.Raw("&nbsp;")
-                </td>
-            </tr>
-            <tr class="tableHeader">
-                <th>Nr.</th>
-                <th>Name:</th>
-                <th>City:</th>
-                <th>PhoneNumber:</th>
-                <th></th>
-            </tr>
+                    {
+                    <div>@Html.Raw("&nbsp;")</div>
+                    }
+                </div>
+            </div>
+            <div class="tableHeader row">
+                <div class="col-lg-1">Nr.</div>
+                <div class="col-lg-4">Name:</div>
+                <div class="col-lg-3">City:</div>
+                <div class="col-lg-3">PhoneNumber:</div>
+                <div class="col-lg-1">&nbsp;</div>
+            </div>
 @{ 
-    int count = Model.PeopleToDisplay.Count;
-    for (int i=0; i < count; i++)
-    {
-        var item = Model.PeopleToDisplay[i];
+            int count = Model.PeopleToDisplay.Count;
+            for (int i=0; i < count; i++)
+            {
+                var item = Model.PeopleToDisplay[i];
 
-        int k = (i % 2);
-        string tableClass = Model.TableRowClasses[k];
-
-            <tr class="@tableClass">
-                <td>@(i + 1)</td>
-                <td>@item.Name</td>
-                <td>@item.City</td>
-                <td>@item.PhoneNumber</td>
-                <td><a href="/Home/DeletePerson?id=@item.ID">Remove</a></td>
-            </tr>
+                int rowClassIndex = (i % 2);
+                item.RowClass = Model.TableRowClasses[rowClassIndex];
+                <partial name="_PersonView" model="item"/>
             }
 }
-            <tr class="tableFooter">
-                <td colspan="5" align="right">@count item(s)</td>
-            </tr>
-        </table>
+            <div class="tableFooter row">
+                <div class="col-lg-10">&nbsp;</div>
+                <div class="col-lg-2">@count item(s)</div>
+            </div>
+        </div>

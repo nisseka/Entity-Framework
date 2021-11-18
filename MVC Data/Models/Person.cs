@@ -7,11 +7,16 @@ namespace MVC_Data.Models
 {
     public class Person
     {
+	private int itemIndex;
+
 	public string Name { get; set; }
 	public string PhoneNumber { get; set; }
 	public string City { get; set; }
 
 	public int ID { get; set; }
+	public int ItemIndex { get => itemIndex; set { itemIndex = value; } }
+
+	public string RowClass { get; set; }
 
 	public string CookieString 
 	{ 
@@ -39,6 +44,15 @@ namespace MVC_Data.Models
 	    Name = string.Empty;
 	    PhoneNumber = string.Empty;
 	    City = string.Empty;
+	}
+
+	public Person(Person source)
+	{
+	    Name = source.Name;
+	    PhoneNumber = source.PhoneNumber;
+	    City = source.City;
+	    ID = source.ID;
+	    itemIndex = source.itemIndex;
 	}
 
 	public Person(CreatePersonViewModel personData)

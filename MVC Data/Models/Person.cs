@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 
 namespace MVC_Data.Models
 {
+    public enum Column5Modes { RemoveLink,DisplayID}
+
     public class Person
     {
 	private int itemIndex;
-
+	private Column5Modes column5Mode;
+	
 	public string Name { get; set; }
 	public string PhoneNumber { get; set; }
 	public string City { get; set; }
@@ -17,6 +20,8 @@ namespace MVC_Data.Models
 	public int ItemIndex { get => itemIndex; set { itemIndex = value; } }
 
 	public string RowClass { get; set; }
+
+	public Column5Modes Column5Mode { get => column5Mode; set { column5Mode = value; } }
 
 	public string CookieString 
 	{ 
@@ -53,6 +58,7 @@ namespace MVC_Data.Models
 	    City = source.City;
 	    ID = source.ID;
 	    itemIndex = source.itemIndex;
+	    column5Mode = source.column5Mode;
 	}
 
 	public Person(CreatePersonViewModel personData)

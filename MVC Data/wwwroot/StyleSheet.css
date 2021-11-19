@@ -10,6 +10,10 @@
     font-size: large;
 }
 
+.ErrorMessage {
+    color: red;
+    font-weight: bolder;
+}
 
 /* 
     Styles for header: 
@@ -49,6 +53,7 @@ a:hover {
     height: 100%;
     align-items: center;
     justify-content: space-between;
+    font-size: larger;
 }
 
 .headerLi {
@@ -67,6 +72,7 @@ a:hover {
     justify-content: center;
     width: 10%;
     height: 100%;
+    font-size: larger;
 }
 
 /* 
@@ -136,9 +142,23 @@ footer {
 }
 
 /* 
-    Styles for list of people table: 
+    Styles for AJAX Index page: 
+*/
+#ActionButtons {
+    border-bottom: 1px solid white;
+}
+
+#PersonIDInput {
+    width: 100px;
+}
+
+/* 
+    Styles for partial view : 
 */
 
+/* 
+    Styles for list of people table: 
+*/
 table {
     border-spacing: 0px;
     width: 90%;

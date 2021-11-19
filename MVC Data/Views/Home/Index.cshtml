@@ -51,7 +51,8 @@
 
                 int rowClassIndex = (i % 2);
                 item.RowClass = Model.TableRowClasses[rowClassIndex];
-                <partial name="_PersonView" model="item"/>
+                item.Column5Mode=Column5Modes.RemoveLink;
+                <partial name="_PersonViewPartial" model="item"/>
             }
 }
             <div class="tableFooter row">

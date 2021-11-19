@@ -17,16 +17,16 @@
         <h1 id="TopLeftHeaderCell">WNET</h1>
         <nav class="headerNav">
             <ul class="headerUl">
-                @{
-                    // Build the links menu:
-                    Dictionary<string, string> links = new Dictionary<string, string>();
+@{
+            // Build the links menu:
+            Dictionary<string, string> links = new Dictionary<string, string>();
+            links.Add("AJAX Mode", "/AJAX/Index");
 
-
-                    foreach (var item in links)
-                    {
-                        <li class="headerLi"><a href="@item.Value">@item.Key</a></li>
-                    }
-                }
+            foreach (var item in links)
+            {
+                <li class="headerLi"><a href="@item.Value">@item.Key</a></li>
+            }
+}
             </ul>
         </nav>
         @Html.ActionLink("Home", "Index", "Home", null, new { id = "TopRightHeaderCell" })

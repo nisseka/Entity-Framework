@@ -1,12 +1,8 @@
-﻿@using MVC_Data.Models;
+﻿@using Entity_Framework.Models;
 @model PeopleViewModel
 
 @{
     ViewData["Title"] = "AJAX Mode";
-
-    int maxID;
-    
-    maxID = Model.People.Count > 0 ? Model.People[Model.People.Count - 1].ID : 0;
 }
 
         <div>
@@ -16,10 +12,10 @@
                         <input type="button" class="formButton" onclick="GetPeopleList()" value="View People" />
                     </div>
                     <div class="col-lg-10">
-                        <label for="PersonIDInput">Person ID:</label>
-                        <input id="PersonIDInput" class="formInputField" type="number" value="0" min="0" max="@maxID" />
-                        <input type="button" class="formButton" onclick="GetPersonByID()" value="Person Details" />
-                        <input type="button" class="formButton" onclick="DeletePersonByID()" value="Delete Person" />
+                        <label for="PersonIndexInput">Person #:</label>
+                        <input id="PersonIndexInput" class="formInputField" type="number" value="1" min="1" max="@Model.People.Count" />
+                        <input type="button" class="formButton" onclick="GetPerson()" value="Person Details" />
+                        <input type="button" class="formButton" onclick="DeletePerson()" value="Delete Person" />
                     </div>
                 </div>
             </div>

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Entity_Framework.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVC_Data.Models
+namespace Entity_Framework.Models
 {
     public enum Column5Modes { RemoveLink,DisplayID}
 
@@ -23,27 +24,6 @@ namespace MVC_Data.Models
 
 	public Column5Modes Column5Mode { get => column5Mode; set { column5Mode = value; } }
 
-	public string CookieString 
-	{ 
-	    get { return $"{Name},{PhoneNumber},{City}\r\n"; } 
-	    set
-	    {
-		string[] cookieParameters = value.Split(',');
-		if (cookieParameters.Length > 0)
-		{
-		    Name = cookieParameters[0];
-		}
-		if (cookieParameters.Length > 1)
-		{
-		    PhoneNumber = cookieParameters[1];
-		}
-		if (cookieParameters.Length > 2)
-		{
-		    City = cookieParameters[2];
-		}
-	    }
-	}
-
 	public Person()
 	{
 	    Name = string.Empty;
@@ -60,6 +40,15 @@ namespace MVC_Data.Models
 	    itemIndex = source.itemIndex;
 	    column5Mode = source.column5Mode;
 	}
+
+	public Person(DBPerson source)
+	{
+	    Name = source.Name;
+	    PhoneNumber = source.PhoneNumber;
+	    City = source.City;
+	    ID = source.ID;
+	}
+
 
 	public Person(CreatePersonViewModel personData)
 	{

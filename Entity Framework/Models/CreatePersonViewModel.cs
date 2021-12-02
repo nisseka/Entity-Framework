@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVC_Data.Models
+namespace Entity_Framework.Models
 {
     public class CreatePersonViewModel
     {

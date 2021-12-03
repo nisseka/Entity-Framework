@@ -3,14 +3,16 @@ using Entity_Framework.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entity_Framework.Migrations
 {
     [DbContext(typeof(DatabaseDbContext))]
-    partial class DatabaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211202135321_Added City one2many")]
+    partial class AddedCityone2many
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,72 +22,33 @@ namespace Entity_Framework.Migrations
 
             modelBuilder.Entity("Entity_Framework.Data.City", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
+                    b.HasKey("CityId");
 
                     b.ToTable("Cities");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            CountryId = 1,
+                            CityId = 1,
                             Name = "Lidköping"
                         },
                         new
                         {
-                            Id = 2,
-                            CountryId = 1,
+                            CityId = 2,
                             Name = "Skövde"
                         },
                         new
                         {
-                            Id = 3,
-                            CountryId = 1,
+                            CityId = 3,
                             Name = "Skara"
-                        });
-                });
-
-            modelBuilder.Entity("Entity_Framework.Data.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(2)")
-                        .HasMaxLength(2);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CountryCode = "SE",
-                            Name = "Sverige"
                         });
                 });
 
@@ -116,21 +79,21 @@ namespace Entity_Framework.Migrations
                         new
                         {
                             ID = 1,
-                            CityId = 1,
+                            CityId = 0,
                             Name = "Niklas",
                             PhoneNumber = "0510-28826"
                         },
                         new
                         {
                             ID = 2,
-                            CityId = 2,
+                            CityId = 1,
                             Name = "Per",
                             PhoneNumber = "0500-85855"
                         },
                         new
                         {
                             ID = 3,
-                            CityId = 3,
+                            CityId = 2,
                             Name = "Otto",
                             PhoneNumber = "0511-32448"
                         });
@@ -159,36 +122,9 @@ namespace Entity_Framework.Migrations
                         new
                         {
                             Name = "AJAX",
-                            LinkURL = "/AJAX/",
+                            LinkURL = "/AJAX/Index",
                             Title = "AJAX Mode"
-                        },
-                        new
-                        {
-                            Name = "Cities",
-                            LinkURL = "/Cities/",
-                            Title = "Cities"
-                        },
-                        new
-                        {
-                            Name = "Countries",
-                            LinkURL = "/Countries/",
-                            Title = "Countries"
-                        },
-                        new
-                        {
-                            Name = "People",
-                            LinkURL = "/Home/",
-                            Title = "People"
                         });
-                });
-
-            modelBuilder.Entity("Entity_Framework.Data.City", b =>
-                {
-                    b.HasOne("Entity_Framework.Data.Country", "Country")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entity_Framework.Data.DBPerson", b =>

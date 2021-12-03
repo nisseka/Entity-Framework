@@ -3,14 +3,16 @@ using Entity_Framework.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entity_Framework.Migrations
 {
     [DbContext(typeof(DatabaseDbContext))]
-    partial class DatabaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211202181048_Added Country one2many")]
+    partial class AddedCountryone2many
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +31,6 @@ namespace Entity_Framework.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -159,26 +160,8 @@ namespace Entity_Framework.Migrations
                         new
                         {
                             Name = "AJAX",
-                            LinkURL = "/AJAX/",
+                            LinkURL = "/AJAX/Index",
                             Title = "AJAX Mode"
-                        },
-                        new
-                        {
-                            Name = "Cities",
-                            LinkURL = "/Cities/",
-                            Title = "Cities"
-                        },
-                        new
-                        {
-                            Name = "Countries",
-                            LinkURL = "/Countries/",
-                            Title = "Countries"
-                        },
-                        new
-                        {
-                            Name = "People",
-                            LinkURL = "/Home/",
-                            Title = "People"
                         });
                 });
 

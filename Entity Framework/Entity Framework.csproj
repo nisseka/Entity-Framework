@@ -12,6 +12,16 @@
     <Compile Remove="Migrations\20211202003007_Modified Menulinks table.Designer.cs" />
     <Compile Remove="Migrations\20211202004918_Fix.cs" />
     <Compile Remove="Migrations\20211202004918_Fix.Designer.cs" />
+    <Compile Remove="Migrations\20211202134241_Added City one2many.cs" />
+    <Compile Remove="Migrations\20211202134241_Added City one2many.Designer.cs" />
+    <Compile Remove="Migrations\20211203020902_test.cs" />
+    <Compile Remove="Migrations\20211203020902_test.Designer.cs" />
+    <Compile Remove="Migrations\20211203021948_DeleteBehavior.cs" />
+    <Compile Remove="Migrations\20211203021948_DeleteBehavior.Designer.cs" />
+    <Compile Remove="Migrations\20211203023210_modified delete.cs" />
+    <Compile Remove="Migrations\20211203023210_modified delete.Designer.cs" />
+    <Compile Remove="Migrations\20211203083639_test.cs" />
+    <Compile Remove="Migrations\20211203083639_test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

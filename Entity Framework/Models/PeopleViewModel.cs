@@ -8,44 +8,22 @@ using System.Threading.Tasks;
 
 namespace Entity_Framework.Models
 {
-    public class PeopleViewModel
+    public class PeopleViewModel : DBModel
     {
-	private Controller aController;
-	private readonly DatabaseDbContext DBContext;
 	private string searchFor;
 
-	public List<DBPerson> People;
-	public List<MenuLink> MenuLinks;
-
 	public readonly List<Person> PeopleToDisplay;
-	public readonly List<string> TableRowClasses;
-
 
 	public string SearchFor { get => searchFor; set { searchFor = value; } }
 
 	public bool CaseSensitiveSearch { get; set; }
 
-	public PeopleViewModel(Controller aController, DatabaseDbContext dbContext)
+	public PeopleViewModel(Controller aController, DatabaseDbContext dbContext) : base(aController,dbContext)
 	{
-	    this.aController = aController;
-	    DBContext = dbContext;
-
 	    PeopleToDisplay = new List<Person>();
-
-	    TableRowClasses = new List<string>();
-	    TableRowClasses.Add("tableRowOdd");
-	    TableRowClasses.Add("tableRowEven");
-
-	    ReadDB();
 	}
 
-	public void ReadDB()
-	{
-	    People = DBContext.People.ToList();
-	    MenuLinks = DBContext.MenuLinks.ToList();
-	}
-
-	public void PrepareView()
+	public override void PrepareView()
 	{
 	    int peopleToDisplayIndex = 0;
 	    bool addPerson = false;
@@ -58,7 +36,7 @@ namespace Entity_Framework.Models
 	    {
 		if (searchFor != null && searchFor.Length > 0)
 		{
-		    if (person.Name.Contains(searchFor, compareType) || person.City.Contains(searchFor, compareType))
+		    if (person.Name.Contains(searchFor, compareType) || person.City.Name.Contains(searchFor, compareType))
 		    {
 			addPerson = true;
 		    } else
@@ -77,21 +55,6 @@ namespace Entity_Framework.Models
 	    }
 	}
 
-	public bool DeletePerson(int itemIndex)
-	{
-	    bool success = false;
-	    if (itemIndex >= 0 && itemIndex<People.Count)
-	    {
-		success = RemovePersonFromDB(People[itemIndex].ID);
-	    }
-	    return success;
-	}
-
-	public bool DeletePersonByID(int aPersonID)
-	{
-	    return RemovePersonFromDB(aPersonID);
-	}
-
 	public DBPerson AddPerson(CreatePersonViewModel personData)
 	{
 	    DBPerson person = null;
@@ -106,28 +69,19 @@ namespace Entity_Framework.Models
 	    return person;
 	}
 
-	public bool RemovePersonFromDB(int ID)
+	public bool DeletePerson(int itemIndex)
 	{
 	    bool success = false;
-
-	    DBPerson dBPerson = DBContext.People.Find(ID);
-	    if (dBPerson!=null)
+	    if (itemIndex >= 0 && itemIndex < People.Count)
 	    {
-		People.Remove(dBPerson);
-		DBContext.People.Remove(dBPerson);
-		DBContext.SaveChanges();
-		success = true;
+		success = RemovePersonFromDB(People[itemIndex].ID);
 	    }
 	    return success;
 	}
 
-	public int AddPersonToDB(DBPerson aPerson)
+	public bool DeletePersonByID(int aPersonID)
 	{
-	    aPerson.ID = 0;				    // Set ID to 0 to allow addition to database
-
-	    DBContext.People.Add(aPerson);
-	    DBContext.SaveChanges();
-	    return  DBContext.People.Count();
+	    return RemovePersonFromDB(aPersonID);
 	}
 
 	public DBPerson FindPersonByID(int aPersonID)

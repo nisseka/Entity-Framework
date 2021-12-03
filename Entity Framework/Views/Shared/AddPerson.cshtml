@@ -1,14 +1,23 @@
 ﻿@using Entity_Framework.Models;
+@using Entity_Framework.Data;
 @model CreatePersonViewModel
 
-        <form class="form" id="AddPersonForm" asp-controller="Home" asp-action="AddPerson" method="post">
-            <label>Add Person:</label>
-            <label asp-for="Name"></label>
-            <input class="formInputField" asp-for="Name" required/>
-            <label asp-for="PhoneNumber"></label>
-            <input class="formInputField" asp-for="PhoneNumber" />
-            <label asp-for="City"></label>
-            <input class="formInputField" asp-for="City" />
-            <input class="formButton" type="submit" value="Add" />
-        </form>
+<form class="form" id="AddPersonForm" asp-controller="Home" asp-action="AddPerson" method="post">
+    <label>Add Person:</label>
+    <label asp-for="Name"></label>
+    <input class="formInputField" asp-for="Name" required />
+    <label asp-for="PhoneNumber"></label>
+    <input class="formInputField" asp-for="PhoneNumber" />
+    <label asp-for="CityId"></label>
+    <select asp-for="CityId" class="formInputField">
+@{
+    // Build the city drop-down list from database table 'Cities':
+    foreach (City city in ViewBag.Cities)
+    {
+        <option value="@city.Id">@city.Name</option>
+    }
+}
+    </select>
+    <input class="formButton" type="submit" value="Add" />
+</form>
 

@@ -17,15 +17,14 @@ namespace Entity_Framework.Models
 	[Display(Name = "Phone Number:")]
 	public string PhoneNumber { get; set; }
 
-	[DataType(DataType.Text)]
 	[Display(Name = "City:")]
-	public string City { get; set; }
+	public int CityId { get; set; }
 
 	public CreatePersonViewModel()
 	{
 	    Name = string.Empty;
 	    PhoneNumber = string.Empty;
-	    City = string.Empty;
+	    CityId = 0;
 	}
     }
 }

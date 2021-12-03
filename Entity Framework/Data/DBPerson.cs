@@ -18,7 +18,9 @@ namespace Entity_Framework.Data
 	public string Name { get; set; }
 
 	public string PhoneNumber { get; set; }
-	public string City { get; set; }
+	
+	public City City { get; set; }
+	public int CityId { get; set; }
 
 	public DBPerson()
 	{
@@ -29,14 +31,14 @@ namespace Entity_Framework.Data
 	{
 	    Name = personData.Name;
 	    PhoneNumber = personData.PhoneNumber;
-	    City = personData.City;
+	    CityId = personData.CityId;
 	}
 
 	public DBPerson(Person source)
 	{
 	    Name = source.Name;
 	    PhoneNumber = source.PhoneNumber;
-	    City = source.City;
+//	    City = source.City;
 	    ID = source.ID;
 	}
     }

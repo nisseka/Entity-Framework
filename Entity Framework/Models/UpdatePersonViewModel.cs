@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entity_Framework.Models
 {
-    public class CreatePersonViewModel
+    public class UpdatePersonViewModel
     {
 	[DataType(DataType.Text)]
-	[Display(Name="Name:")]
-	[Required(ErrorMessage ="A name is required")]
+	[Display(Name = "Name:")]
+	[Required(ErrorMessage = "A name is required")]
 	public string Name { get; set; }
 
 	[DataType(DataType.PhoneNumber)]
@@ -23,11 +23,28 @@ namespace Entity_Framework.Models
 	[Display(Name = "Languages:")]
 	public int[] Languages { get; set; }
 
-	public CreatePersonViewModel()
+	public int Id { get; set; }
+
+	public UpdatePersonViewModel()
 	{
 	    Name = string.Empty;
 	    PhoneNumber = string.Empty;
 	    CityId = 0;
+	}
+
+	public UpdatePersonViewModel(Person aPerson)
+	{
+	    if (aPerson != null)
+	    {
+		Name = aPerson.Name;
+		PhoneNumber = aPerson.PhoneNumber;
+		Id = aPerson.ID;
+	    }
+	    else
+	    {
+		Name = string.Empty;
+		PhoneNumber = string.Empty;
+	    }
 	}
     }
 }

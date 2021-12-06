@@ -16,6 +16,8 @@ namespace Entity_Framework.Models
 	public List<MenuLink> MenuLinks;
 	public List<City> Cities;
 	public List<Country> Countries;
+	public List<Language> Languages;
+	public List<PersonLanguage> PersonLanguages;
 
 	public readonly List<string> TableRowClasses;
 
@@ -37,8 +39,11 @@ namespace Entity_Framework.Models
 	    MenuLinks = DBContext.MenuLinks.ToList();
 	    Cities = DBContext.Cities.ToList();
 	    Countries = DBContext.Countries.ToList();
+	    Languages = DBContext.Languages.ToList();
+	    PersonLanguages = DBContext.PersonLanguages.ToList();
 
 	    aController.ViewBag.Cities = Cities;                // Make city list available for partial view 'AddPerson'
+	    aController.ViewBag.Languages = Languages;          // Make language list available for partial view 'AddPerson'
 	    aController.ViewBag.Countries = Countries;          // Make country list available for partial view 'AddCity'
 	    aController.ViewBag.MenuLinks = MenuLinks;          // Make menu links available for the layout page
 	}

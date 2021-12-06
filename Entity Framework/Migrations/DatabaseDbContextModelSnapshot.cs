@@ -86,6 +86,18 @@ namespace Entity_Framework.Migrations
                             Id = 1,
                             CountryCode = "SE",
                             Name = "Sverige"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryCode = "NO",
+                            Name = "Norge"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryCode = "US",
+                            Name = "USA"
                         });
                 });
 
@@ -136,6 +148,49 @@ namespace Entity_Framework.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Entity_Framework.Data.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Svenska"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Norska"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Danska"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Engelska (UK)"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Engelska (US)"
+                        });
+                });
+
             modelBuilder.Entity("Entity_Framework.Data.MenuLink", b =>
                 {
                     b.Property<string>("Name")
@@ -176,9 +231,47 @@ namespace Entity_Framework.Migrations
                         },
                         new
                         {
+                            Name = "Languages",
+                            LinkURL = "/Languages/",
+                            Title = "Languages"
+                        },
+                        new
+                        {
                             Name = "People",
                             LinkURL = "/Home/",
                             Title = "People"
+                        });
+                });
+
+            modelBuilder.Entity("Entity_Framework.Data.PersonLanguage", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonId", "LanguageId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("PersonLanguages");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            LanguageId = 1
                         });
                 });
 
@@ -196,6 +289,21 @@ namespace Entity_Framework.Migrations
                     b.HasOne("Entity_Framework.Data.City", "City")
                         .WithMany("People")
                         .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entity_Framework.Data.PersonLanguage", b =>
+                {
+                    b.HasOne("Entity_Framework.Data.Language", "Language")
+                        .WithMany("People")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entity_Framework.Data.DBPerson", "Person")
+                        .WithMany("Languages")
+                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

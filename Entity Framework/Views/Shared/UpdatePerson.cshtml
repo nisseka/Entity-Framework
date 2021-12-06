@@ -1,8 +1,9 @@
 ﻿@using Entity_Framework.Models;
 @using Entity_Framework.Data;
-@model CreatePersonViewModel
+@model UpdatePersonViewModel
 
-<form class="form" id="AddPersonForm" asp-controller="Home" asp-action="AddPerson" method="post">
+<form class="form" id="UpdatePersonForm" asp-controller="Home" asp-action="UpdatePerson" method="post">
+    <input asp-for="Id" type="hidden" value="@Model.Id"/>
     <label asp-for="Name"></label>
     <input class="formInputField" asp-for="Name" required />
     <label asp-for="PhoneNumber"></label>
@@ -10,23 +11,38 @@
     <label asp-for="CityId"></label>
     <select asp-for="CityId" class="formInputField">
 @{
+    string selectedCity = ViewBag.SelectedCity;
+
     // Build the city drop-down list from database table 'Cities':
     foreach (City city in ViewBag.Cities)
     {
+        if (selectedCity != null && selectedCity == city.Name)
+        {
+        <option value="@city.Id" selected>@city.Name</option>
+        } else
+        {
         <option value="@city.Id">@city.Name</option>
+        }
     }
 }
     </select>
     <label asp-for="Languages"></label>
-    <select asp-for="Languages" class="formInputField" multiple size="3">
+    <select asp-for="Languages" class="formInputField" multiple size="5">
 @{
+    string languages=ViewBag.SelectedLanguages;
     // Build the language drop-down list from database table 'Languages':
     foreach (Language language in ViewBag.Languages)
     {
+        if (languages != null && languages.Contains(language.Name))
+        {
+        <option value="@language.Id" selected>@language.Name</option>
+        }
+        else
+        {
         <option value="@language.Id">@language.Name</option>
+        }
     }
 }
     </select>
-    <input class="formButton" type="submit" value="Add" />
+    <input class="formButton" type="submit" value="Save" />
 </form>
-

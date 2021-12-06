@@ -2,7 +2,7 @@
 @model CitiesViewModel;
 @{
     ViewData["Title"] = "Cities";
-    var createCityViewModel = new CreateCityViewModel();    // Create an emtpy view-model for use in the partial view AddPerson
+    var createCityViewModel = new CreateCityViewModel();    // Create an emtpy view-model for use in the partial view AddCity
 }
         <p></p>
         <partial name="AddCity" model="createCityViewModel" />
@@ -16,9 +16,9 @@
             </div>
             <div class="tableHeader row">
                 <div class="col-lg-1">Nr.</div>
-                <div class="col-lg-4">Name:</div>
-                <div class="col-lg-3">Country:</div>
-                <div class="col-lg-3">People:</div>
+                <div class="col-lg-2">Name:</div>
+                <div class="col-lg-2">Country:</div>
+                <div class="col-lg-6">People:</div>
                 <div class="col-lg-1">&nbsp;</div>
             </div>
 @{
@@ -33,9 +33,9 @@
             rowclass = Model.TableRowClasses[rowClassIndex];
             <div class="@rowclass row">
                 <div class="col-lg-1">@(i + 1)</div>
-                <div class="col-lg-4">@item.Name</div>
-                <div class="col-lg-3">@item.Country.Name</div>
-                <div class="col-lg-3">@(item.People!=null ? item.People.Count : 0)</div>
+                <div class="col-lg-2">@item.Name</div>
+                <div class="col-lg-2">@item.Country.Name</div>
+                <div class="col-lg-6">@item.PeopleString</div>
                 <div class="col-lg-1">
                     <a href="/Cities/DeleteCity?id=@item.Id">Remove</a>
                 </div>

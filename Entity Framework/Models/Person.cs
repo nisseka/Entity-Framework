@@ -22,6 +22,8 @@ namespace Entity_Framework.Models
 
 	public string RowClass { get; set; }
 
+	public string Languages { get; set; }
+
 	public Column5Modes Column5Mode { get => column5Mode; set { column5Mode = value; } }
 
 	public Person()
@@ -29,12 +31,14 @@ namespace Entity_Framework.Models
 	    Name = string.Empty;
 	    PhoneNumber = string.Empty;
 	    City = string.Empty;
+	    Languages = string.Empty;
 	}
 
 	public Person(Person source)
 	{
 	    Name = source.Name;
 	    PhoneNumber = source.PhoneNumber;
+	    Languages = source.Languages;
 	    City = source.City;
 	    ID = source.ID;
 	    itemIndex = source.itemIndex;
@@ -47,6 +51,7 @@ namespace Entity_Framework.Models
 	    PhoneNumber = source.PhoneNumber;
 	    City = source.City != null ? source.City.Name : string.Empty;
 	    ID = source.ID;
+	    Languages = source.LanguagesString;
 	}
 
 

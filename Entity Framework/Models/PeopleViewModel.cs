@@ -64,9 +64,76 @@ namespace Entity_Framework.Models
 		person = new DBPerson(personData);
 
 		AddPersonToDB(person);
+
+		int[] languageIDList = personData.Languages;
+		if (languageIDList != null)
+		{
+		    PersonLanguage pl;
+
+		    foreach (var languageID in languageIDList)
+		    {
+			pl = new PersonLanguage();
+			pl.PersonId = person.ID;
+			pl.LanguageId = languageID;
+			DBContext.PersonLanguages.Add(pl);
+		    }
+		    DBContext.SaveChanges();
+		}
 	    }
 
 	    return person;
+	}
+
+	public bool UpdatePerson(UpdatePersonViewModel personData)
+	{
+	    bool success = false;
+
+	    if (aController.ModelState.IsValid)
+	    {
+		int id = personData.Id;
+		DBPerson person = DBContext.People.Find(id);
+
+		if (person != null)
+		{
+		    person.Name = personData.Name;
+		    person.PhoneNumber = personData.PhoneNumber;
+		    person.CityId = personData.CityId;
+
+		    PersonLanguage pl;
+		    int[] languageIDList = personData.Languages;
+
+		    if (languageIDList != null)
+		    {
+			if (person.Languages != null)
+			{
+			    person.Languages.Clear();
+
+			    foreach (var languageID in languageIDList)
+			    {
+				pl = new PersonLanguage();
+				pl.PersonId = id;
+				pl.LanguageId = languageID;
+				person.Languages.Add(pl);
+			    }
+			}
+			else
+			{       // Person doesn't have any languages..
+			    foreach (var languageID in languageIDList)
+			    {
+				pl = new PersonLanguage();
+				pl.PersonId = id;
+				pl.LanguageId = languageID;
+				DBContext.PersonLanguages.Add(pl);
+			    }
+			}
+		    }
+
+		    DBContext.People.Update(person);
+		    DBContext.SaveChanges();
+		}
+	    }
+		
+	    return success;
 	}
 
 	public bool DeletePerson(int itemIndex)
@@ -84,7 +151,22 @@ namespace Entity_Framework.Models
 	    return RemovePersonFromDB(aPersonID);
 	}
 
-	public DBPerson FindPersonByID(int aPersonID)
+	public Person FindPersonByID(int aPersonID)
+	{
+	    Person person = null;
+
+	    foreach (var item in PeopleToDisplay)
+	    {
+		if (item.ID == aPersonID)
+		{
+		    person = item;
+		    break;
+		}
+	    }
+	    return person;
+	}
+
+	public DBPerson FindDBPersonByID(int aPersonID)
 	{
 	    DBPerson person = null;
 

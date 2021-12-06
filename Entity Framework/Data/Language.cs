@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entity_Framework.Data
 {
-    [Table("Cities")]
-    public class City
+    [Table("Languages")]
+    public class Language
     {
 	[Key]
 	public int Id { get; set; }
@@ -17,21 +17,18 @@ namespace Entity_Framework.Data
 	[Required]
 	public string Name { get; set; }
 
-	public List<DBPerson> People { get; set; }
+	public List<PersonLanguage> People { get; set; }
 
-	public Country Country { get; set; }
-	public int CountryId { get; set; }
-
-	public string PeopleString
+	public string PeopleString 
 	{
 	    get
 	    {
-		List<DBPerson> peopleList = People;
+		List<PersonLanguage> peopleList = People;
 		string peopleString;
 
 		if (peopleList != null)
 		{
-		    peopleString = String.Format("{0}: ", peopleList.Count);
+		    peopleString = String.Format("{0}: ",peopleList.Count);
 
 		    int i = 0;
 		    foreach (var item in peopleList)
@@ -40,11 +37,10 @@ namespace Entity_Framework.Data
 			{
 			    peopleString += ",";
 			}
-			peopleString += item.Name;
+			peopleString += item.Person.Name;
 			i++;
 		    }
-		}
-		else
+		} else
 		{
 		    peopleString = "0";
 		}
@@ -52,15 +48,14 @@ namespace Entity_Framework.Data
 	    }
 	}
 
-	public City()
+	public Language()
 	{
 
 	}
 
-	public City(CreateCityViewModel cityData)
+	public Language(CreateLanguageViewModel languageData)
 	{
-	    Name = cityData.Name;
-	    CountryId = cityData.CountryId;
+	    Name = languageData.Name;
 	}
     }
 }

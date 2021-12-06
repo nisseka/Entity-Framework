@@ -1,7 +1,6 @@
 ﻿body {
     font-family: Consolas;
-    /*    width: 1115px;*/
-    width: 1240px;
+    width: 1330px;
     background-color: lightblue;
     display: flex;
     flex-direction: column;
@@ -188,4 +187,15 @@ td, th {
 
 .my-container {
     width: 1030px;
+}
+
+/* 
+    Styles for view 'UpdatePerson': 
+*/
+
+#UpdatePersonForm {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 40%;
 }

@@ -27,12 +27,33 @@ namespace Entity_Framework.Controllers
 	    return View(peopleViewModel);
 	}
 
+	public IActionResult PersonDetails(int id)
+	{
+	    PeopleViewModel peopleViewModel = new PeopleViewModel(this, DBContext);
+
+	    peopleViewModel.PrepareView();
+
+	    Person person = peopleViewModel.FindPersonByID(id);
+
+	    return View(person);
+	}
+
 	[HttpPost]
 	public IActionResult AddPerson(CreatePersonViewModel personData)
 	{
 	    PeopleViewModel peopleViewModel = new PeopleViewModel(this, DBContext);
 
 	    peopleViewModel.AddPerson(personData);
+
+	    return RedirectToAction("Index");
+	}
+
+	[HttpPost]
+	public IActionResult UpdatePerson(UpdatePersonViewModel personData)
+	{
+	    PeopleViewModel peopleViewModel = new PeopleViewModel(this, DBContext);
+
+	    peopleViewModel.UpdatePerson(personData);
 
 	    return RedirectToAction("Index");
 	}

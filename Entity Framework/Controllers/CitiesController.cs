@@ -19,7 +19,6 @@ namespace Entity_Framework.Controllers
 	{
 	    CitiesViewModel citiesViewModel = new CitiesViewModel(this, DBContext);
 
-
 	    return View(citiesViewModel);
 	}
 

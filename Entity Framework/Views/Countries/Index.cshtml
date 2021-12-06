@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Countries";
 
-    var createCountryViewModel = new CreateCountryViewModel();    // Create an emtpy view-model for use in the partial view AddPerson
+    var createCountryViewModel = new CreateCountryViewModel();    // Create an emtpy view-model for use in the partial view AddCountry
 }
         <p></p>
         <partial name="AddCountry" model="createCountryViewModel" />
@@ -18,9 +18,9 @@
             </div>
             <div class="tableHeader row">
                 <div class="col-lg-1">Nr.</div>
-                <div class="col-lg-4">Name:</div>
-                <div class="col-lg-3">Country Code:</div>
-                <div class="col-lg-3">Cities:</div>
+                <div class="col-lg-2">Name:</div>
+                <div class="col-lg-2">Country Code:</div>
+                <div class="col-lg-6">Cities:</div>
                 <div class="col-lg-1">&nbsp;</div>
             </div>
 @{
@@ -35,9 +35,9 @@
             rowclass = Model.TableRowClasses[rowClassIndex];
             <div class="@rowclass row">
                 <div class="col-lg-1">@(i + 1)</div>
-                <div class="col-lg-4">@item.Name</div>
-                <div class="col-lg-3">@item.CountryCode</div>
-                <div class="col-lg-3">@(item.Cities!=null ? item.Cities.Count : 0)</div>
+                <div class="col-lg-2">@item.Name</div>
+                <div class="col-lg-2">@item.CountryCode</div>
+                <div class="col-lg-6">@item.CitiesString</div>
                 <div class="col-lg-1">
                     <a href="/Countries/DeleteCountry?id=@item.Id">Remove</a>
                 </div>
